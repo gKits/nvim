@@ -7,7 +7,7 @@ return {
 
         conform.setup({
             formatters_by_ft = {
-                go = { "gofmt", "goimports", "golines" },
+                go = { "gofmt", "goimports" },
                 lua = { "stylua" },
             },
             format_on_save = {

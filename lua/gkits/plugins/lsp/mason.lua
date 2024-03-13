@@ -19,19 +19,13 @@ return {
         mason.setup()
 
         mason_lspconfig.setup {
-            ensure_installed = {
-                "gopls",
-                "dockerls",
-                "docker_compose_language_service",
-                "lua_ls",
-            },
-
+            ensure_installed = vim.tbl_keys(Servers),
             automatic_installation = true
         }
 
+
         mason_tool_installer.setup({
             ensure_installed = {
-                "gofumpt",
                 "goimports",
                 "delve",
                 "golangci-lint",
