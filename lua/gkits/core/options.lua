@@ -6,7 +6,7 @@ vim.g.maplocalleader = " "
 vim.opt.guicursor = "n-c-v:block,i-ci-ve:block-blinkwait0-blinkon150-blinkoff150"
 
 -- Ruler at column 120
-vim.opt.colorcolumn = "120"
+vim.opt.colorcolumn = "140"
 
 -- Relative line numbers
 vim.opt.nu = true
@@ -33,9 +33,6 @@ vim.o.mouse = ""
 -- Enable break indent
 vim.o.breakindent = true
 
--- Save undo history
-vim.o.undofile = true
-
 -- Case insensitive searching UNLESS /C or capital in search
 vim.o.ignorecase = true
 vim.o.smartcase = true
@@ -50,5 +47,10 @@ vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
+
+vim.o.swapfile = false
+vim.o.backup = false
+vim.o.undofile = true
+vim.o.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 
 vim.o.termguicolors = true
