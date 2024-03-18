@@ -1,22 +1,3 @@
-Servers = {
-    gopls = {},
-    dockerls = {},
-    docker_compose_language_service = {},
-    lua_ls = {
-        Lua = {
-            diagnostics = {
-                globals = { "vim" },
-            },
-            workspace = {
-                library = {
-                    [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                    [vim.fn.stdpath("config") .. "/lua"] = true,
-                },
-            },
-        },
-    },
-}
-
 return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -85,7 +66,26 @@ return {
             vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
         end
 
-        for k, v in pairs(Servers) do
+        local servers = {
+            gopls = {},
+            dockerls = {},
+            docker_compose_language_service = {},
+            lua_ls = {
+                Lua = {
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        library = {
+                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                            [vim.fn.stdpath("config") .. "/lua"] = true,
+                        },
+                    },
+                },
+            },
+        }
+
+        for k, v in pairs(servers) do
             lspconfig[k].setup({
                 capabilities = capabilities,
                 on_attach = on_attach,
