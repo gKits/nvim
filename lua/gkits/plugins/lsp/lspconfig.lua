@@ -79,18 +79,18 @@ return {
             opts.desc = "[r]e[s]tart [ls]p"
             keymap("n", "<leader>rsls", "<cmd>LspRestart<CR>", opts)
 
-            vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-            vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-            vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-            vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+            vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+            vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
         end
 
         for k, v in pairs(Servers) do
             lspconfig[k].setup({
                 capabilities = capabilities,
                 on_attach = on_attach,
-                settings = v
+                settings = v,
             })
         end
-    end
+    end,
 }

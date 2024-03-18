@@ -1,12 +1,12 @@
 -- Set leader
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Set cursor
 vim.opt.guicursor = "n-c-v:block,i-ci-ve:block-blinkwait0-blinkon150-blinkoff150"
 
 -- Ruler at column 120
-vim.opt.colorcolumn = '120'
+vim.opt.colorcolumn = "120"
 
 -- Relative line numbers
 vim.opt.nu = true
@@ -28,7 +28,7 @@ vim.o.hlsearch = false
 vim.wo.number = true
 
 -- Disable mouse
-vim.o.mouse = ''
+vim.o.mouse = ""
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -41,7 +41,7 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 
 -- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
 
 -- Decrease update time
 vim.o.updatetime = 250
@@ -49,6 +49,6 @@ vim.o.timeout = true
 vim.o.timeoutlen = 300
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.o.completeopt = "menuone,noselect"
 
 vim.o.termguicolors = true

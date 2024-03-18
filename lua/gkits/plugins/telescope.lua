@@ -9,6 +9,7 @@ return {
         local telescope = require("telescope")
         local builtin = require("telescope.builtin")
         local actions = require("telescope.actions")
+        local themes = require("telescope.themes")
 
         telescope.setup({
             defaults = {
@@ -17,9 +18,9 @@ return {
                     i = {
                         ["<C-k>"] = actions.move_selection_previous,
                         ["<C-j>"] = actions.move_selection_next,
-                    }
-                }
-            }
+                    },
+                },
+            },
         })
 
         telescope.load_extension("fzf")
@@ -32,13 +33,12 @@ return {
         keymap("n", "<leader>sc", builtin.grep_string, { desc = "[s]earch string under [c]ursor in cwd" })
         keymap("n", "<leader>sd", builtin.diagnostics, { desc = "[s]earch in [d]iagnostics" })
         keymap("n", "<leader>sh", builtin.help_tags, { desc = "[s]earch [h]elp" })
-        keymap('n', '<leader><space>', require('telescope.builtin').buffers, { desc = 'Search existing buffers' })
-        keymap('n', '<leader>/', function()
-            require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+        keymap("n", "<leader><space>", require("telescope.builtin").buffers, { desc = "Search existing buffers" })
+        keymap("n", "<leader>/", function()
+            builtin.current_buffer_fuzzy_find(themes.get_dropdown({
                 winblend = 10,
                 previewer = false,
-            })
-        end, { desc = 'Fuzzily search in current buffer' })
-    end
-
+            }))
+        end, { desc = "Fuzzily search in current buffer" })
+    end,
 }

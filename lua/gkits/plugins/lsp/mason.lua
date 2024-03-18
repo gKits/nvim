@@ -3,14 +3,14 @@ return {
     dependencies = {
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        { 'j-hui/fidget.nvim', opts = {}, tag = 'legacy' },
+        { "j-hui/fidget.nvim", opts = {}, tag = "legacy" },
 
         -- Additional lua configuration, makes nvim stuff amazing!
-        'folke/neodev.nvim',
+        "folke/neodev.nvim",
     },
 
     config = function()
-        require('neodev').setup()
+        require("neodev").setup()
 
         local mason = require("mason")
         local mason_lspconfig = require("mason-lspconfig")
@@ -18,19 +18,18 @@ return {
 
         mason.setup()
 
-        mason_lspconfig.setup {
+        mason_lspconfig.setup({
             ensure_installed = vim.tbl_keys(Servers),
-            automatic_installation = true
-        }
-
+            automatic_installation = true,
+        })
 
         mason_tool_installer.setup({
             ensure_installed = {
                 "goimports",
                 "delve",
                 "golangci-lint",
-                "jsonlint"
-            }
+                "jsonlint",
+            },
         })
-    end
+    end,
 }

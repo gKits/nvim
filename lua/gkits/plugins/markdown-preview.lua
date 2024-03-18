@@ -3,5 +3,5 @@ return {
     event = { "BufEnter *.md" },
     config = function()
         vim.fn["mkdp#util#install"]()
-    end
+    end,
 }

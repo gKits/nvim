@@ -5,12 +5,12 @@ return {
         "windwp/nvim-ts-autotag",
     },
     config = function()
-        pcall(require("nvim-treesitter.install").update { with_sync = true })
+        pcall(require("nvim-treesitter.install").update({ with_sync = true }))
 
         local treesitter = require("nvim-treesitter.configs")
         treesitter.setup({
             highlight = {
-                enable = true
+                enable = true,
             },
 
             autotag = {
@@ -92,8 +92,8 @@ return {
                             ["<leader>A"] = "@parameter.inner",
                         },
                     },
-                }
-            }
+                },
+            },
         })
-    end
+    end,
 }
