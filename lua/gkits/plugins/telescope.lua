@@ -21,6 +21,7 @@ return {
                     },
                 },
             },
+            path_display = { "truncate" },
         })
 
         telescope.load_extension("fzf")
