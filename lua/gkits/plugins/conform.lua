@@ -24,5 +24,5 @@ return {
                 timeout_ms = 1000,
             })
         end, { desc = "[f]ormat [f]ile or marked range (visual)" })
-    end
+    end,
 }
