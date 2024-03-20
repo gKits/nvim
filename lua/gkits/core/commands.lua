@@ -38,7 +38,7 @@ end, {})
 vim.api.nvim_create_user_command("GoTest", function(opts)
     local cmd = "tmux neww -n GoTest 'go test -race -cover " .. opts.args .. " 2>&1 | less'"
     pcall(function()
-        vim.cmd("!" .. cmd)
+        vim.cmd("silent !" .. cmd)
     end)
 end, { nargs = 1, complete = "dir" })
 
