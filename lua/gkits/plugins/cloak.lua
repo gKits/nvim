@@ -16,7 +16,7 @@ return {
         -- })
         cloak.setup({
             enabled = true,
-            cloak_character = "*",
+            cloak_character = "¤",
             highlight_group = "Comment",
             cloak_length = 8,
             try_all_patterns = true,
