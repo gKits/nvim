@@ -1,0 +1,24 @@
+snippet iferr! "if err != nil ..."
+	if err != nil {
+		return err
+	}
+	${0}
+
+snippet iferrpnc! "if err != nil ... panic"
+	if err != nil {
+		panic(err)
+	}
+	${0}
+
+snippet iferrlog! "if err != nil ... log"
+	if err != nil {
+		${1}.log.Error(${2:string})
+		return err
+	}
+	${3}
+
+snippet enum! "create a const iota enum"
+	const (
+		${1:first} ${2:type} = iota
+		${0:second}
+	)
