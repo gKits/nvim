@@ -11,6 +11,9 @@ return {
         local cmp = require("cmp")
 
         local luasnip = require("luasnip")
+        local sniploader = require("luasnip.loaders.from_snipmate")
+
+        sniploader.lazy_load({ paths = vim.fn.stdpath("config") .. "/snippets" })
 
         cmp.setup({
             completion = {
@@ -39,5 +42,17 @@ return {
                 { name = "path" },
             }),
         })
+
+        vim.keymap.set({ "i", "s" }, "C-L", function()
+            luasnip.jump(1)
+        end)
+        vim.keymap.set({ "i", "s" }, "C-H", function()
+            luasnip.jump(-1)
+        end)
+        vim.keymap.set({ "i", "s" }, "C-E", function()
+            if luasnip.choice_active() then
+                luasnip.change_choice(1)
+            end
+        end)
     end,
 }
