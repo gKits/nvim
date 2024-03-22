@@ -52,10 +52,15 @@ vim.api.nvim_create_user_command("GoTestCover", function(opts)
     end
     outpath = outpath .. path[#path - 1] .. ".out"
 
-    local cmd = "tmux neww -n GoTest 'go test -race -coverprofile " .. outpath .. " " .. opts.args .. " 2>&1 | less'"
+    local cmd = "tmux neww -n GoTest '{ go test -race -coverprofile "
+        .. outpath
+        .. " "
+        .. opts.args
+        .. " 2>&1; go tool cover -html="
+        .. outpath
+        .. "; } | less'"
 
     pcall(function()
         vim.cmd("silent !" .. cmd)
-        vim.cmd("silent !go tool cover -html=" .. outpath)
     end)
 end, { nargs = 1, complete = "dir" })
