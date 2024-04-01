@@ -92,5 +92,17 @@ return {
                 settings = v,
             })
         end
+
+        local configs = require("lspconfig.configs")
+        if not configs.temp then
+            configs.temp = {
+                default_config = {
+                    cmd = { "templ", "lsp" },
+                    filetypes = { "templ" },
+                    root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
+                    settings = {},
+                },
+            }
+        end
     end,
 }
