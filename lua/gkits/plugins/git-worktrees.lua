@@ -5,6 +5,8 @@ return {
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
+        -- using oil as default file explorer
+        "stevearc/oil.nvim",
     },
 
     config = function()
@@ -21,7 +23,17 @@ return {
             desc = "List [g]it [W]orktrees and create new worktree",
         })
 
-        -- local Hooks = require("git-worktree.hooks")
-        -- worktree.hooks({ SWITCH = Hooks.builtins.update_current_buffer_on_switch })
+        gwt.on_tree_change(function(op, metadata)
+            if op == gwt.Operations.Switch then
+                print("Switched from " .. metadata.prev_path .. " to " .. metadata.path)
+                print(vim.fn.expand("%"))
+            end
+            -- Update oil.nvim file explorer
+            local curbuf = vim.fn.expand("%")
+            if curbuf:find("^oil:///") then
+                print(curbuf .. " is an oil buffer")
+                require("oil").open(vim.fn.getcwd())
+            end
+        end)
     end,
 }
