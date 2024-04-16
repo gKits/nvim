@@ -8,6 +8,7 @@ return {
         conform.setup({
             formatters_by_ft = {
                 go = { "gofmt", "goimports" },
+                templ = { "goimports", "templ" },
                 lua = { "stylua" },
                 json = { "fixjson" },
             },

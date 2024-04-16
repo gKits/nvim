@@ -68,6 +68,9 @@ return {
 
         local servers = {
             gopls = {},
+            templ = {},
+            htmx = {},
+            tailwindcss = {},
             dockerls = {},
             docker_compose_language_service = {},
             lua_ls = {
