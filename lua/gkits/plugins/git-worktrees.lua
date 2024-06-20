@@ -31,7 +31,6 @@ return {
             -- Update oil.nvim file explorer
             local curbuf = vim.fn.expand("%")
             if curbuf:find("^oil:///") then
-                print(curbuf .. " is an oil buffer")
                 require("oil").open(vim.fn.getcwd())
             end
         end)
