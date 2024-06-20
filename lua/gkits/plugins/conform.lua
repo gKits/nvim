@@ -11,6 +11,8 @@ return {
                 templ = { "goimports", "templ" },
                 lua = { "stylua" },
                 json = { "fixjson" },
+                python = { "black" },
+                html = { "prettier" },
             },
             format_on_save = {
                 lsp_fallback = true,
