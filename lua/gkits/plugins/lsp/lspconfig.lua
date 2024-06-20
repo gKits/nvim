@@ -67,9 +67,16 @@ return {
         end
 
         local servers = {
-            gopls = {},
+            gopls = {
+                gopls = {
+                    usePlaceholders = false,
+                    buildFlags = { "-tags=benchmark" },
+                    gofumpt = true,
+                    ["local"] = "<repo>",
+                },
+            },
             templ = {},
-            htmx = {},
+            -- htmx = {},
             tailwindcss = {},
             dockerls = {},
             docker_compose_language_service = {},
@@ -86,6 +93,16 @@ return {
                     },
                 },
             },
+            pylsp = {},
+            spectral = {},
+            nginx_language_server = {
+                nginx_language_server = {
+                    command = "nginx-language-server",
+                    filetypes = { "nginx" },
+                    root_pattern = { "nginx.conf", ".git" },
+                },
+            },
+            html = {},
         }
 
         for k, v in pairs(servers) do
