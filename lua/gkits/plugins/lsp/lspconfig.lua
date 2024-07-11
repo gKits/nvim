@@ -22,7 +22,10 @@ return {
             keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
             opts.desc = "[g]o to [d]efinition"
-            keymap("n", "<leader>gd", vim.lsp.buf.definition, opts)
+            keymap("n", "gd", vim.lsp.buf.definition, opts)
+
+            opts.desc = "go to declaration"
+            keymap("n", "gD", vim.lsp.buf.definition, opts)
 
             opts.desc = "[l]ist [d]efinitions"
             keymap("n", "<leader>ld", telescope.lsp_definitions, opts)
