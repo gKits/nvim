@@ -39,8 +39,8 @@ return {
             },
         })
 
-        vim.keymap.set("n", "<leader>tt", require("neotest").run.run, { desc = "Run nearest test" })
-        vim.keymap.set("n", "<leader>tw", require("neotest").watch.toggle, { desc = "Toggle test watching" })
+        vim.keymap.set("n", "<leader>tt", nt.run.run, { desc = "Run nearest test" })
+        vim.keymap.set("n", "<leader>tw", nt.watch.toggle, { desc = "Toggle test watching" })
         vim.keymap.set(
             "n",
             "<leader>ta",
@@ -53,5 +53,7 @@ return {
             "<CMD>lua require('neotest').run.run({ strategy = 'dap' })<CR>",
             { desc = "Debug nearest test" }
         )
+        vim.keymap.set("n", "<leader>to", "<CMD>Neotest output<CR>", { desc = "show test output" })
+        vim.keymap.set("n", "<leader>tO", "<CMD>Neotest output-panel<CR>", { desc = "show test output panel" })
     end,
 }
