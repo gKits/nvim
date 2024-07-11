@@ -36,9 +36,6 @@ return {
             opts.desc = "Show [d]ocument [s]ymbols"
             keymap("n", "<leader>ds", telescope.lsp_document_symbols, opts)
 
-            opts.desc = "[g]o to [D]eclaration"
-            keymap("n", "<leader>gD", vim.lsp.buf.definition, opts)
-
             opts.desc = "[l]ist [i]mplementations"
             keymap("n", "<leader>li", telescope.lsp_implementations, opts)
 
@@ -51,22 +48,16 @@ return {
             opts.desc = "Show line diagnostics"
             keymap("n", "<leader>q", vim.diagnostic.setloclist, opts)
 
-            opts.desc = "Go next diagnostic"
-            keymap("n", "]d", vim.diagnostic.goto_next, opts)
-
-            opts.desc = "Go previous diagnostic"
-            keymap("n", "[d", vim.diagnostic.goto_prev, opts)
-
             opts.desc = "Show documentation"
             keymap("n", "K", vim.lsp.buf.hover, opts)
 
             opts.desc = "[r]e[s]tart [ls]p"
             keymap("n", "<leader>rsls", "<cmd>LspRestart<CR>", opts)
 
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-            vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-            vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "go to previous diagnostic message" })
+            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "go to next diagnostic message" })
+            vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "open floating diagnostic message" })
+            vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "open diagnostics list" })
         end
 
         local servers = {
