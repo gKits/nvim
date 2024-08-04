@@ -12,6 +12,14 @@ return {
         local themes = require("telescope.themes")
 
         telescope.setup({
+            extensions = {
+                fzf = {
+                    fuzzy = true,
+                    override_generic_sorter = true,
+                    override_file_sort = true,
+                    case_mode = "smart_case",
+                },
+            },
             defaults = {
                 path_display = { "truncate" },
                 mappings = {
