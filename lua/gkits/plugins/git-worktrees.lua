@@ -20,12 +20,12 @@ return {
 
         local Hooks = require("git-worktree.hooks")
 
-        Hooks.register(Hooks.type.SWITCH, Hooks.builtins.update_current)
         Hooks.register(Hooks.type.SWITCH, function(path, prev_path)
             print(prev_path .. "  ~>  " .. path)
-            local curbuf = vim.fn.expand("%")
-            if curbuf:find("^oil:///") then
+            if vim.fn.expand("%"):find("^oil:///") then
                 require("oil").open(vim.fn.getcwd())
+            else
+                Hooks.builtins.update_current_buffer_on_switch(path, prev_path)
             end
         end)
     end,
