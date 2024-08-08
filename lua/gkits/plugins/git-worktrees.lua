@@ -1,7 +1,6 @@
 return {
-    -- "theprimeagen/git-worktree.nvim"
-    -- Shit's broken need to use fixed repo for now until @polarmutex releases v2
-    "nooproblem/git-worktree.nvim",
+    "polarmutex/git-worktree.nvim",
+    version = "^2",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-telescope/telescope.nvim",
@@ -10,25 +9,20 @@ return {
     },
 
     config = function()
-        local gwt = require("git-worktree")
-        gwt.setup()
+        require("telescope").load_extension("git_worktree")
 
-        local telescope = require("telescope")
-        telescope.load_extension("git_worktree")
-
-        vim.keymap.set("n", "<Leader>gw", telescope.extensions.git_worktree.git_worktrees, {
+        vim.keymap.set("n", "<Leader>gw", require("telescope").extensions.git_worktree.git_worktree, {
             desc = "List [g]it [w]orktrees",
         })
-        vim.keymap.set("n", "<Leader>gW", telescope.extensions.git_worktree.create_git_worktree, {
+        vim.keymap.set("n", "<Leader>gW", require("telescope").extensions.git_worktree.create_git_worktree, {
             desc = "List [g]it [W]orktrees and create new worktree",
         })
 
-        gwt.on_tree_change(function(op, metadata)
-            if op == gwt.Operations.Switch then
-                print("Switched from " .. metadata.prev_path .. " to " .. metadata.path)
-                print(vim.fn.expand("%"))
-            end
-            -- Update oil.nvim file explorer
+        local Hooks = require("git-worktree.hooks")
+
+        Hooks.register(Hooks.type.SWITCH, Hooks.builtins.update_current)
+        Hooks.register(Hooks.type.SWITCH, function(path, prev_path)
+            print("Switched from " .. prev_path .. " to " .. path)
             local curbuf = vim.fn.expand("%")
             if curbuf:find("^oil:///") then
                 require("oil").open(vim.fn.getcwd())
