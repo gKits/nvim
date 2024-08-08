@@ -22,7 +22,7 @@ return {
 
         Hooks.register(Hooks.type.SWITCH, Hooks.builtins.update_current)
         Hooks.register(Hooks.type.SWITCH, function(path, prev_path)
-            print("Switched from " .. prev_path .. " to " .. path)
+            print(prev_path .. "  ~>  " .. path)
             local curbuf = vim.fn.expand("%")
             if curbuf:find("^oil:///") then
                 require("oil").open(vim.fn.getcwd())
