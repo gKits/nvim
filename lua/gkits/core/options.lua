@@ -48,9 +48,11 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
+-- Undofile
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undofile = true
 vim.o.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 
+-- Term Colors
 vim.o.termguicolors = true
