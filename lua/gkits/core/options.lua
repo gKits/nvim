@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set cursor
-vim.opt.guicursor = "n-c-v:block,i-ci-ve:block-blinkwait0-blinkon150-blinkoff150"
+vim.opt.guicursor = "n-c-v:block,i-ci-ve:ver50"
 
 -- Ruler at column 120
 vim.opt.colorcolumn = "140"
