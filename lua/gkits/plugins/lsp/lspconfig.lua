@@ -1,3 +1,85 @@
+local function setup_lsp(lspconfig, capabilities, on_attach)
+    -- Ansible
+    lspconfig.ansiblels.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+    })
+    -- Docker
+    lspconfig.dockerls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+    })
+    lspconfig.docker_compose_language_service.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+    })
+    -- Gitlab
+    lspconfig.gitlab_ci_ls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+    })
+    -- Go
+    lspconfig.gopls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+            gopls = {
+                usePlaceholders = false,
+                buildFlags = { "-tags=benchmark" },
+                gofumpt = true,
+                ["local"] = "<repo>",
+            },
+        },
+    })
+    lspconfig.templ.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+    })
+    -- HTML/CSS (Webdev)
+    lspconfig.html.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        filetypes = { "html", "templ" }
+    })
+    lspconfig.htmx.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        filetypes = { "html", "templ" }
+    })
+    lspconfig.tailwindcss.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        filetypes = { "html", "templ" }
+    })
+    -- Lua
+    lspconfig.lua_ls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+            Lua = {
+                diagnostics = {
+                    globals = { "vim" },
+                },
+                workspace = {
+                    library = {
+                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                        [vim.fn.stdpath("config") .. "/lua"] = true,
+                    },
+                },
+            },
+        }
+    })
+    -- OpenAPI
+    lspconfig.spectral.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+    })
+    -- Python
+    lspconfig.pylsp.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+    })
+end
 return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -60,66 +142,6 @@ return {
             vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "open diagnostics list" })
         end
 
-        local servers = {
-            gopls = {
-                gopls = {
-                    usePlaceholders = false,
-                    buildFlags = { "-tags=benchmark" },
-                    gofumpt = true,
-                    ["local"] = "<repo>",
-                },
-            },
-            templ = {},
-            -- htmx = {},
-            tailwindcss = {},
-            dockerls = {},
-            docker_compose_language_service = {},
-            lua_ls = {
-                Lua = {
-                    diagnostics = {
-                        globals = { "vim" },
-                    },
-                    workspace = {
-                        library = {
-                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.stdpath("config") .. "/lua"] = true,
-                        },
-                    },
-                },
-            },
-            pylsp = {},
-            -- spectral = {},
-            nginx_language_server = {
-                nginx_language_server = {
-                    command = "nginx-language-server",
-                    filetypes = { "nginx" },
-                    root_pattern = { "nginx.conf", ".git" },
-                },
-            },
-            html = {},
-            ansiblels = {},
-            vacuum = {},
-            gitlab_ci_ls = {},
-        }
-
-        for k, v in pairs(servers) do
-            lspconfig[k].setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-                settings = v,
-            })
-        end
-
-        local configs = require("lspconfig.configs")
-        if not configs.temp then
-            configs.temp = {
-                default_config = {
-                    cmd = { "templ", "lsp" },
-                    filetypes = { "templ" },
-                    root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
-                    settings = {},
-                },
-            }
-        end
+        setup_lsp(lspconfig, capabilities, on_attach)
     end,
 }
