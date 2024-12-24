@@ -36,7 +36,7 @@ return {
                 "delve",
                 "golangci-lint",
                 "jsonlint",
-                "fixjson",
+                "prettierd",
             },
         })
     end,

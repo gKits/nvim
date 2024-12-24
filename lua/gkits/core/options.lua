@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Set cursor
-vim.opt.guicursor = "n-c-v:block,i-ci-ve:block-blinkwait0-blinkon150-blinkoff150"
+vim.opt.guicursor = "n-c-v:block,i-ci-ve:ver50"
 
 -- Ruler at column 120
 vim.opt.colorcolumn = "140"
@@ -48,9 +48,11 @@ vim.o.timeoutlen = 300
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
 
+-- Undofile
 vim.o.swapfile = false
 vim.o.backup = false
 vim.o.undofile = true
 vim.o.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 
+-- Term Colors
 vim.o.termguicolors = true
