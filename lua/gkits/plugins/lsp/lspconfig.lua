@@ -88,7 +88,7 @@ return {
                 },
             },
             pylsp = {},
-            spectral = {},
+            -- spectral = {},
             nginx_language_server = {
                 nginx_language_server = {
                     command = "nginx-language-server",
@@ -97,6 +97,9 @@ return {
                 },
             },
             html = {},
+            ansiblels = {},
+            vacuum = {},
+            gitlab_ci_ls = {},
         }
 
         for k, v in pairs(servers) do
