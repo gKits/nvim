@@ -1,8 +1,17 @@
 return {
     -- Rosepine theme
-    "rose-pine/neovim",
+    "catppuccin/nvim",
     priority = 1000,
     config = function()
-        vim.cmd.colorscheme("rose-pine-moon")
+        require("catppuccin").setup({
+            transparent_background = true,
+            dim_inactive = {
+                enabled = true,
+            },
+            styles = {
+                strings = { "italic" }
+            }
+        })
+        vim.cmd.colorscheme("catppuccin")
     end,
 }
