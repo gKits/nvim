@@ -55,4 +55,4 @@ vim.o.undofile = true
 vim.o.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 
 -- Term Colors
-vim.o.termguicolors = true
+vim.o.termguicolors = false
