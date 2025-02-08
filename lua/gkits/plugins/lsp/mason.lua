@@ -33,6 +33,7 @@ return {
         mason_tool_installer.setup({
             ensure_installed = {
                 "goimports",
+                "golines",
                 "delve",
                 "golangci-lint",
                 "jsonlint",
