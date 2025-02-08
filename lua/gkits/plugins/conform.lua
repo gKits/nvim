@@ -6,8 +6,14 @@ return {
         local conform = require("conform")
 
         conform.setup({
+            formatters = {
+                golines = {
+                    command = "golines",
+                    args = { "-m", "100", "--shorten-comments" }
+                },
+            },
             formatters_by_ft = {
-                go = { "gofumpt", "goimports" },
+                go = { "gofumpt", "goimports", "golines" },
                 templ = { "goimports", "templ" },
                 lua = { "stylua" },
                 json = { "prettierd" },
