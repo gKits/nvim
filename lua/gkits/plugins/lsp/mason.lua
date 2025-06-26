@@ -27,7 +27,8 @@ return {
         })
 
         mason_lspconfig.setup({
-            automatic_installation = true,
+            -- automatic_installation = true,
+            automatic_enable = { exclude = { "gopls", "lua_ls"} },
         })
 
         mason_tool_installer.setup({

@@ -9,7 +9,7 @@ return {
             formatters = {
                 golines = {
                     command = "golines",
-                    args = { "-m", "100", "--shorten-comments" }
+                    args = { "-m", os.getenv("GOLINES_LENGTH") or "120", "--shorten-comments" },
                 },
             },
             formatters_by_ft = {
@@ -21,6 +21,8 @@ return {
                 html = { "prettierd" },
                 markdown = { "prettierd" },
                 yaml = { "prettierd" },
+                typescript = { "prettierd" },
+                javascript = { "prettierd" },
             },
             format_on_save = {
                 lsp_fallback = true,

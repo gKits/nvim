@@ -31,6 +31,11 @@ local function setup_lsp(lspconfig, capabilities, on_attach)
             },
         },
     })
+    lspconfig.golangci_lint_ls.setup({
+        capabilities = capabilities,
+        filetypes = { "go", "gomod" },
+        on_attach = on_attach,
+    })
     lspconfig.templ.setup({
         capabilities = capabilities,
         on_attach = on_attach,
@@ -39,17 +44,22 @@ local function setup_lsp(lspconfig, capabilities, on_attach)
     lspconfig.html.setup({
         capabilities = capabilities,
         on_attach = on_attach,
-        filetypes = { "html", "templ" }
+        filetypes = { "html", "templ" },
     })
     lspconfig.htmx.setup({
         capabilities = capabilities,
         on_attach = on_attach,
-        filetypes = { "html", "templ" }
+        filetypes = { "html", "templ" },
     })
     lspconfig.tailwindcss.setup({
         capabilities = capabilities,
         on_attach = on_attach,
-        filetypes = { "html", "templ" }
+        filetypes = { "html", "templ" },
+    })
+    -- Java-/Typescript
+    lspconfig.ts_ls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
     })
     -- Lua
     lspconfig.lua_ls.setup({
@@ -67,7 +77,7 @@ local function setup_lsp(lspconfig, capabilities, on_attach)
                     },
                 },
             },
-        }
+        },
     })
     -- OpenAPI
     lspconfig.spectral.setup({
@@ -136,8 +146,11 @@ return {
             opts.desc = "[r]e[s]tart [ls]p"
             keymap("n", "<leader>rsls", "<cmd>LspRestart<CR>", opts)
 
-            vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "go to previous diagnostic message" })
-            vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "go to next diagnostic message" })
+            local goto_prev = function() vim.diagnostic.jump({count=-1}) end
+            local goto_next = function() vim.diagnostic.jump({count=1}) end
+
+            vim.keymap.set("n", "[d", goto_prev, { desc = "go to previous diagnostic message" })
+            vim.keymap.set("n", "]d", goto_next, { desc = "go to next diagnostic message" })
             vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "open floating diagnostic message" })
             vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "open diagnostics list" })
         end
